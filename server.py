@@ -1,4 +1,4 @@
-from flask import Flask, Response
+from flask import Flask, Response, request
 import json
 
 
@@ -10,6 +10,17 @@ def hello():
     res = Response(json.dumps(readFile()))
     res.headers['Content-type'] = 'application/json'
     return res
+
+@app.route("/newUser/<path:username>")
+def newUser(username):
+    return username + "dick"
+
+
+@app.route('/add', methods=['POST'])
+def add_entry():
+    asd = request.data
+    print(json.loads(asd))
+    return asd
 
 
 def readFile():

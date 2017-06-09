@@ -1,6 +1,6 @@
 ## TODO: 
-- [ ] Use Cron tab to run `scrapy runspider app.py` every 5 minutes
-- [ ] when theres request serve directly from that json file.
+- [x] Use Cron tab to run `scrapy runspider app.py` every 5 minutes
+- [x] when theres request serve directly from that json file.
 
 # Built Rest API
 - [ ] post /newUser
