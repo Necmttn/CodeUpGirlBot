@@ -1,9 +1,9 @@
 import scrapy
 import json
 
-# osman
+#neco was here
 
-with open('users.json') as data_file:
+with open('/app/users.json') as data_file:
     data = json.load(data_file)
 
 def genUserUrl(userList):

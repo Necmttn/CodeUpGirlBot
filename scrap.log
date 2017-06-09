@@ -1,0 +1,72 @@
+2017-06-09 12:31:07 [scrapy.utils.log] INFO: Scrapy 1.4.0 started (bot: scrapybot)
+2017-06-09 12:31:07 [scrapy.utils.log] INFO: Overridden settings: {'FEED_FORMAT': 'json', 'FEED_URI': '/app/results.json', 'SPIDER_LOADER_WARN_ONLY': True}
+2017-06-09 12:31:07 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.feedexport.FeedExporter',
+ 'scrapy.extensions.logstats.LogStats']
+2017-06-09 12:31:07 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2017-06-09 12:31:07 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2017-06-09 12:31:07 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2017-06-09 12:31:07 [scrapy.core.engine] INFO: Spider opened
+2017-06-09 12:31:07 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2017-06-09 12:31:07 [scrapy.extensions.telnet] DEBUG: Telnet console listening on 127.0.0.1:6023
+2017-06-09 12:31:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.freecodecamp.com/manojmaity65> (referer: None)
+2017-06-09 12:31:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.freecodecamp.com/manojmaity65>
+{'name': 'Manoj Maity', 'bio': 'Hello, I am working as a SEO/SMO freelancer. I want to learn Web development and programming.', 'score': '[ 12 ]'}
+2017-06-09 12:31:09 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.freecodecamp.com/necmttn> (referer: None)
+2017-06-09 12:31:09 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.freecodecamp.com/necmttn>
+{'name': 'Necmettin Karakaya', 'bio': 'Full-Stack Developer\r\nCurrently Learning \r\nReact - React Native - Redux\r\n', 'score': '[ 211 ]'}
+2017-06-09 12:31:09 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.freecodecamp.com/jodylecompte> (referer: None)
+2017-06-09 12:31:09 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.freecodecamp.com/osmanmesutozcan> (referer: None)
+2017-06-09 12:31:09 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.freecodecamp.com/jodylecompte>
+{'name': 'Jody LeCompte', 'bio': 'PHP | Python | Javascript | Elixir', 'score': '[ 1075 ]'}
+2017-06-09 12:31:09 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.freecodecamp.com/osmanmesutozcan>
+{'name': 'Osman Mesut OZCAN', 'bio': '♻️', 'score': '[ 304 ]'}
+2017-06-09 12:31:09 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.freecodecamp.com/zcassini> (referer: None)
+2017-06-09 12:31:09 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.freecodecamp.com/zcassini>
+{'name': 'Zac Cassini', 'bio': None, 'score': '[ 960 ]'}
+2017-06-09 12:31:09 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.freecodecamp.com/luishendrix92> (referer: None)
+2017-06-09 12:31:09 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.freecodecamp.com/luishendrix92>
+{'name': 'Luis Felipe López G.', 'bio': "I'm 24 and currently studying to become a Computational Systems Engineer, I love cats, cinematography, TV, coding and design and much more!", 'score': '[ 1603 ]'}
+2017-06-09 12:31:09 [scrapy.core.engine] INFO: Closing spider (finished)
+2017-06-09 12:31:09 [scrapy.extensions.feedexport] INFO: Stored json feed (6 items) in: /app/results.json
+2017-06-09 12:31:09 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 1375,
+ 'downloader/request_count': 6,
+ 'downloader/request_method_count/GET': 6,
+ 'downloader/response_bytes': 216563,
+ 'downloader/response_count': 6,
+ 'downloader/response_status_count/200': 6,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2017, 6, 9, 12, 31, 9, 852074),
+ 'item_scraped_count': 6,
+ 'log_count/DEBUG': 13,
+ 'log_count/INFO': 8,
+ 'memusage/max': 47910912,
+ 'memusage/startup': 47910912,
+ 'response_received_count': 6,
+ 'scheduler/dequeued': 6,
+ 'scheduler/dequeued/memory': 6,
+ 'scheduler/enqueued': 6,
+ 'scheduler/enqueued/memory': 6,
+ 'start_time': datetime.datetime(2017, 6, 9, 12, 31, 7, 192933)}
+2017-06-09 12:31:09 [scrapy.core.engine] INFO: Spider closed (finished)
