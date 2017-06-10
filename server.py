@@ -38,6 +38,7 @@ def query_db(query, args=(), one=False):
     cur.close()
     return (rv[0] if rv else None) if one else rv
 
+
 @app.route('/codeupgirl', methods = ['POST', 'GET'])
 def handleCommand():
     if request.method == 'POST':
@@ -57,6 +58,7 @@ def handleCommand():
         finally:
             return msg
 
+
 def on_delete_user(text):
     con = get_db()
     query_db("DELETE FROM students WHERE username=? ", ( text, ) )
@@ -67,16 +69,20 @@ def on_delete_user(text):
 
 def on_new_user(text):
     con = get_db()
-    query_db('INSERT INTO students (username, bio, score) VALUES (?, ?, ?)',
-             (text, '', ''))
+    query_db('INSERT INTO students (username, bio, score, isactive) VALUES (?, ?, ?, ?)',
+             (text, '', 0, 1))
     con.commit()
     msg = 'New Student Added 😎 ! Say hi to *{}*'.format(text)
     send_message(msg)
 
 
 def on_all_students(text):
-    students = [ (user[0], user[1]) for user in query_db('select * from students')]
-    send_message(students)
+    students = [(user[1], user[3]) for user in query_db('select * from students')]
+    message = ''
+    for student in students:
+        message += '`👸 {:<20} ❤️  {:<10} `\n'.format(student[0], student[1])
+
+    send_message(message)
 
 
 def send_message(message):
