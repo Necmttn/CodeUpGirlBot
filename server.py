@@ -56,10 +56,16 @@ def handleCommand():
                 '/allstudents': on_all_students
             }[command]
             on_func(request.form['text'])
-            msg = 'recieved'
+
+            msg = {
+                '/newstudent': 'Welcome! Wait a little while we register you.',
+                '/allstudent': 'Preparing the scoreboard...',
+                '/deletestudent': 'We hope you will come back :(',
+            }[command]
+
         except Exception as e:
             logger.exception(e)
-            msg = 'problemo'
+            msg = 'Opps. Something went wrong!'
 
         finally:
             return msg
