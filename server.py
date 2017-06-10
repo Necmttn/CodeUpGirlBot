@@ -60,11 +60,11 @@ def get_users():
 def new_student():
     if request.method == 'POST':
         try:
-            query_db('INSERT INTO students (username, bio, score) VALUES (?, ?, ?)', (request.json['username'], 'asd', 12))
-            # con.execute('INSERT INTO students (username, bio, score) VALUES (?, ?, ?)', ('osmna', '', ''))
-            # con.commit()
+            con = get_db()
+            query_db('INSERT INTO students (username, bio, score) VALUES (?, ?, ?)',
+                (request.json['username'], request.json['bio'], request.json['score']))
+            con.commit()
             msg = "Record succesfully added"
-
         except Exception as e:
             logger.exception(e)
             msg = "error in insert operation"
