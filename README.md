@@ -13,5 +13,5 @@
 - [ ] delete user
 
 
-Developed with ❤️  by @necmttn for CodeUpGirl project.
+Developed with ❤️  by @necmttn and @osmanmesutozcan for CodeUpGirl project.
 
