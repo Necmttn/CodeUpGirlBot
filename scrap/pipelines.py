@@ -19,7 +19,7 @@ class SQLiteStorePipeline(object):
     def process_item(self, item, domain):
         try:
             if item['name']:
-                utils.insert_db('INSERT OR REPLACE INTO results(name,bio,score) \
+                utils.insert_db('INSERT INTO results(name,bio,score) \
                                 VALUES(?,?,?)',
                                 (
                                 item['name'],
@@ -31,7 +31,7 @@ class SQLiteStorePipeline(object):
         return item
 
     def open_spider(self, spider):
-        self.create_table(self.filename)
+        self.refresh_table(self.filename)
 
     def close_spider(self, spider):
         if self.conn is not None:
@@ -45,7 +45,8 @@ class SQLiteStorePipeline(object):
         except:
             return 0
 
-    def create_table(self, filename):
+    def refresh_table(self, filename):
+        utils.insert_db('DROP TABLE result')
         self.conn.execute('create table if not exists results \
                      ( \
                      id integer primary key, \
