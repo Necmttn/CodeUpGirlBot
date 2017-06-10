@@ -1,3 +1,4 @@
+import subprocess
 import logging
 import requests
 from flask import Flask, Response, request, g
@@ -11,6 +12,7 @@ app = Flask(__name__)
 DATABASE = '/app/db/database.db'
 SCHEMA_STD = '/app/db/schema.sql'
 SLACK_HOOK = 'https://hooks.slack.com/services/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'
+SCRAPER_SCRIPT = 'scraper crawl fcc_crawl'
 
 
 logger = logging.getLogger('server')
@@ -93,6 +95,8 @@ def on_new_user(text):
     con.commit()
     msg = 'New Student Added 😎 ! Say hi to *{}*'.format(text)
     send_message(msg)
+    return subprocess.call(SCRAPER_SCRIPT)
+
 
 
 def on_all_students(text):
