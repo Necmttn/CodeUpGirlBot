@@ -12,7 +12,7 @@ app = Flask(__name__)
 DATABASE = '/app/db/database.db'
 SCHEMA_STD = '/app/db/schema.sql'
 SLACK_HOOK = 'https://hooks.slack.com/services/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'
-SCRAPER_SCRIPT = 'scraper crawl fcc_crawl'
+SCRAPER_SCRIPT = 'scrapy crawl fcc_crawl'
 
 
 logger = logging.getLogger('server')
