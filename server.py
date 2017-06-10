@@ -12,11 +12,15 @@ app = Flask(__name__)
 DATABASE = '/app/db/database.db'
 SCHEMA_STD = '/app/db/schema.sql'
 SLACK_HOOK = 'https://hooks.slack.com/services/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'
-SCRAPER_SCRIPT = 'scrapy crawl fcc_crawl'
+SCRAPER_SCRIPT = 'scrapy crawl fcc_crawl'.split(' ')
 
 
 logger = logging.getLogger('server')
 logger.setLevel(logging.DEBUG)
+
+
+def run_scrapy():
+    p = subprocess.Popen(SCRAPER_SCRIPT)
 
 
 def get_db():
@@ -81,6 +85,7 @@ def on_delete_user(text):
              ( text, ) )
     con.commit()
     msg = 'Student deleted *{}*'.format(text)
+    run_scrapy()
     send_message(msg)
 
 
@@ -94,8 +99,8 @@ def on_new_user(text):
              (text, 1))
     con.commit()
     msg = 'New Student Added 😎 ! Say hi to *{}*'.format(text)
+    run_scrapy()
     send_message(msg)
-    return subprocess.call(SCRAPER_SCRIPT)
 
 
 

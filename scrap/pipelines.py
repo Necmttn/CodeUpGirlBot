@@ -46,8 +46,8 @@ class SQLiteStorePipeline(object):
             return 0
 
     def refresh_table(self, filename):
-        utils.insert_db('DROP TABLE result')
-        self.conn.execute('create table if not exists results \
+        utils.insert_db('DROP TABLE results')
+        self.conn.execute('create table results \
                      ( \
                      id integer primary key, \
                      name text unique, \
