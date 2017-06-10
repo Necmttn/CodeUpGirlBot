@@ -15,10 +15,10 @@ RUN apt-get update && apt-get install -y cron
 # Install any needed packages specified in requirements.txt
 RUN pip install -r requirements.txt
 
-# run scrapper every *n 
+# run scrapper every *n
 RUN echo "starting Cron"
 
-RUN echo "* * * * *  /app/cron.sh" | crontab -
+RUN echo "* * * * *  /app/scripts/cron.sh" | crontab -
 
 # Make port 80 available to the world outside this container
 EXPOSE 80

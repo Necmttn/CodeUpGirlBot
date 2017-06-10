@@ -1,7 +1,8 @@
+"""Run scrapy to get data from https://www.freecodecamp.com/"""
+
 import scrapy
 import json
 
-#neco was here
 
 with open('/app/users.json') as data_file:
     data = json.load(data_file)
