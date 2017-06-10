@@ -97,7 +97,7 @@ def addrec():
          con.close()
 
 def readFile():
-    fh = open('/app/results.json')
+    fh = open('/app/scrap/results.json')
     data =  json.load(fh)
     fh.close()
     return data
