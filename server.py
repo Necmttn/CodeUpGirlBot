@@ -59,7 +59,7 @@ def handleCommand():
 
             msg = {
                 '/newstudent': 'Welcome! Wait a little while we register you.',
-                '/allstudent': 'Preparing the scoreboard...',
+                '/allstudents': 'Preparing the scoreboard...',
                 '/deletestudent': 'We hope you will come back :(',
             }[command]
 
@@ -110,4 +110,4 @@ def send_message(message):
 
 if __name__ == "__main__":
     init_db()
-    app.run(host="0.0.0.0", debug=True)
+    app.run(host="0.0.0.0")
