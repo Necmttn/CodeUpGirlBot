@@ -8,11 +8,11 @@ class FccCrawlSpider(scrapy.Spider):
     name = 'fcc_crawl'
     allowed_domains = ['freecodecamp.com']
 
-    start_urls = ['http://freecodecamp.com/{}'.format(u)
+    start_urls = ['http://freecodecamp.com/{}'.format(u[0])
                   for u in utils.query_db(
                       'SELECT username \
                        FROM students \
-                       WHERE is_active=1')]
+                       WHERE isactive=1')]
 
     def parse(self, response):
         name =  response.xpath(

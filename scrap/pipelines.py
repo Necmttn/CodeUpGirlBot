@@ -18,12 +18,13 @@ class SQLiteStorePipeline(object):
 
     def process_item(self, item, domain):
         try:
-            utils.query_db('insert into results(name,bio,score) \
-                              values(?,?,?)',
-                              (
-                              item['name'],
-                              item['bio'],
-                              int(item['score'].strip(' []'))))
+            if item['name']:
+                utils.insert_db('INSERT OR REPLACE INTO results(name,bio,score) \
+                                VALUES(?,?,?)',
+                                (
+                                item['name'],
+                                item['bio'],
+                                self.sanitize_score(item.get('score'))))
         except Exception as e:
             logger.exception(e)
             print('Failed to insert item: {}'.format(item['name']))
@@ -38,11 +39,17 @@ class SQLiteStorePipeline(object):
             self.conn.close()
             self.conn = None
 
+    def sanitize_score(self, string=''):
+        try:
+            return int(string.strip(' []'))
+        except:
+            return 0
+
     def create_table(self, filename):
         self.conn.execute('create table if not exists results \
                      ( \
                      id integer primary key, \
-                     name text, \
+                     name text unique, \
                      bio text, \
                      score integer)')
         self.conn.commit()

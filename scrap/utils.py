@@ -11,3 +11,9 @@ def get_connection_to_db(filename):
 def query_db(query, args=()):
     conn = get_connection_to_db(database)
     return conn.execute(query, args)
+
+
+def insert_db(query, args=()):
+    conn = get_connection_to_db(database)
+    conn.execute(query, args)
+    conn.commit()

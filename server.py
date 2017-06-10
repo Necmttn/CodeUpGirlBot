@@ -4,14 +4,18 @@ from flask import Flask, Response, request, g
 from sqlite3 import dbapi2 as sqlite3
 import json
 
+
 app = Flask(__name__)
 
+
 DATABASE = '/app/db/database.db'
+SCHEMA_STD = '/app/db/schema.sql'
 SLACK_HOOK = 'https://hooks.slack.com/services/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'
 
 
 logger = logging.getLogger('server')
 logger.setLevel(logging.DEBUG)
+
 
 def get_db():
     """
@@ -25,12 +29,14 @@ def get_db():
     db.row_factory = sqlite3.Row
     return db
 
+
 def init_db():
     with app.app_context():
         db = get_db()
-        with app.open_resource('schema.sql', mode='r') as f:
+        with app.open_resource(SCHEMA_STD, mode='r') as f:
             db.cursor().executescript(f.read())
         db.commit()
+
 
 def query_db(query, args=(), one=False):
     cur = get_db().execute(query, args)
@@ -61,25 +67,32 @@ def handleCommand():
 
 def on_delete_user(text):
     con = get_db()
-    query_db("DELETE FROM students WHERE username=? ", ( text, ) )
+    query_db("UPDATE students \
+             SET isactive=0 \
+             WHERE username=? ",
+             ( text, ) )
     con.commit()
     msg = 'Student deleted *{}*'.format(text)
     send_message(msg)
 
 
 def on_new_user(text):
+    if not text:
+        send_message('`Looks like you forgot something. ( pro tip: username.`')
+        return
+
     con = get_db()
-    query_db('INSERT INTO students (username, bio, score, isactive) VALUES (?, ?, ?, ?)',
-             (text, '', 0, 1))
+    query_db('INSERT OR REPLACE INTO students (username, isactive) VALUES (?, ?)',
+             (text, 1))
     con.commit()
     msg = 'New Student Added 😎 ! Say hi to *{}*'.format(text)
     send_message(msg)
 
 
 def on_all_students(text):
-    students = [(user[1], user[3]) for user in query_db('select * from students')]
     message = ''
-    for student in students:
+
+    for student in query_db('SELECT name, score FROM results ORDER BY NOT score'):
         message += '`👸 {:<20} ❤️  {:<10} `\n'.format(student[0], student[1])
 
     send_message(message)
@@ -90,4 +103,5 @@ def send_message(message):
 
 
 if __name__ == "__main__":
+    init_db()
     app.run(host="0.0.0.0", debug=True)
